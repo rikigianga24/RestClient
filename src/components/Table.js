@@ -1,19 +1,33 @@
-import React from 'react'
-import Footer from './components/Footer'
-import Header from './components/Header'
-import MainContent from './components/MainContent'
+import React, { Component } from 'react'
 
-class App extends React.Component {
-    render(){
-        return(
-            <div>
-                <Header />
-                
-                <Footer />
-            </div>
-        )
-    }
-}
+ //logica tabella
+    const Table = ({ object }) => { //passo a Table l'oggetto object
+        return (
 
-export default App;
+          <table>
+            <thead>
+              <tr>
+                <th>Group-Id</th>
+                <th>id</th>
+                <th>name</th>
+                <th>completed</th>
+              </tr>
+            </thead>
+            <tbody>
+              { (object.length > 0) ? object.map( (object, index) => {
+                 return (
+                  <tr key={ index }>
+                    <td>{ object.userId }</td>
+                    <td>{ object.id }</td>
+                    <td>{ object.title}</td>
+                    <td>{ object.completed }</td>
+                  </tr>
+                )
+               }) : <tr><td colSpan="5">Loading...</td></tr> }
+            </tbody>
+          </table>
+        );
+      }
+    
+export default Table;
 

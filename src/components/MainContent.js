@@ -1,22 +1,36 @@
 
 import React from 'react'
-import ReactDOM from 'react'
+import Header from "./Header.js";
+import Table from "./Table.js"
+
 
 class MainContent extends React.Component { 
-    constructor(props) { 
-        super(props); 
-        this.state = { }; 
-    } 
-    componentDidMount() {
-        // send HTTP request
-        // save it to the state
+    constructor(){
+        super()
+        this.state={
+            object : []
+        }
+    }
+    
+    componentDidMount(){
+        fetch("https://jsonplaceholder.typicode.com/todos")
+        .then(response => response.json())
+       
+        .then(data => {
+        this.setState(
+                {object : data}
+                )
+        })
+        .then(data => console.log(data))
     }
     render() { 
-        return (
-            <div> 
-                <h1>This is a view created by a class component</h1> 
-            </div> 
-        ) 
+        return(
+            <div className="App">
+                
+                <Table object={this.state.object} />
+                
+            </div>
+        )
     } 
 } 
 export default MainContent;
