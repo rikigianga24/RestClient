@@ -1,3 +1,4 @@
+
 import React from 'react'
 import ReactDOM from 'react'
 
@@ -18,6 +19,6 @@ class MainContent extends React.Component {
         ) 
     } 
 } 
-ReactDOM.render( <MainContent />, document.getElementById('root') );
-
 export default MainContent;
+
+
