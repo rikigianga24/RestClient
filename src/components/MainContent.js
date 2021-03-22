@@ -1,16 +1,21 @@
-import React from 'react'
 
-function MainContent(){
-  return(
-    fetch("https://jsonplaceholder.typicode.com/todos/", {
-    "method": "GET"
-    })
-      .then(response=>response.json())
-      .then(text=>{
-        console.log(text)
-        document.body.innerHTML=JSON.stringify(text);
-      })
-  )
+import React from 'react'
+import Form from "./Form"
+
+class MainContent extends React.Component{
+
+  render(){
+    return(
+      <div>
+      <Form />
+   
+    </div>
+    )
+  }
+
+
+
+
 }
 
 export default MainContent;
