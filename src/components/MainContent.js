@@ -1,8 +1,6 @@
-
-import React from 'react'
-import Header from "./Header.js";
-import Table from "./Table.js"
-
+import React from 'react';
+import Table from "./Table.js";
+import FormRequest from "./FormRequest";
 
 class MainContent extends React.Component { 
     constructor(){
@@ -13,26 +11,34 @@ class MainContent extends React.Component {
     }
     
     componentDidMount(){
-        fetch("https://jsonplaceholder.typicode.com/todos")
-        .then(response => response.json())
-       
-        .then(data => {
-        this.setState(
-                {object : data}
+        
+    }
+
+    handleClick ()
+    {
+        let url = document.getElementById("input_url").value;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                this.setState(
+                    {
+                        object: data
+                    }
                 )
         })
-        .then(data => console.log(data))
     }
+
     render() { 
         return(
-            <div className="App">
-                
+            <div className="App mt-2">
+                <FormRequest 
+                    onClick={() => this.handleClick()}
+                />
+
                 <Table object={this.state.object} />
-                
             </div>
         )
     } 
 } 
 export default MainContent;
-
-

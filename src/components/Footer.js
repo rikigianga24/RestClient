@@ -3,8 +3,8 @@ import React from "react"
 
 function Footer(){
     return(
-        <div>
-            MonkeyBecomeSociety&copy;
+        <div className="p-2">
+            Made by MonkeyBecomeSociety&copy;
         </div>
     );
     }

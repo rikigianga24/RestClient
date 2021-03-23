@@ -8,10 +8,10 @@ import MainContent from "./components/MainContent.js";
 class App extends React.Component {
     
     render(){
-        return(
-            <div className="App">
+        return( 
+            <div className="container">
                 <Header />
-                <MainContent />
+                    <MainContent />
                 <Footer />
             </div>
         )

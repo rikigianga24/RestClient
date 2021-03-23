@@ -1,33 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
+import ReactJson from "react-json-view"
 
- //logica tabella
-    const Table = ({ object }) => { //passo a Table l'oggetto object
-        return (
+function Table(props)
+{
+  if (props.object !== null)
+  {
+    return (
+      <div>
+        <ReactJson src={props.object} />
+      </div>
+    );
+  }
 
-          <table>
-            <thead>
-              <tr>
-                <th>Group-Id</th>
-                <th>id</th>
-                <th>name</th>
-                <th>completed</th>
-              </tr>
-            </thead>
-            <tbody>
-              { (object.length > 0) ? object.map( (object, index) => {
-                 return (
-                  <tr key={ index }>
-                    <td>{ object.userId }</td>
-                    <td>{ object.id }</td>
-                    <td>{ object.title}</td>
-                    <td>{ object.completed }</td>
-                  </tr>
-                )
-               }) : <tr><td colSpan="5">Loading...</td></tr> }
-            </tbody>
-          </table>
-        );
-      }
+  return null;
+}
     
 export default Table;
 
