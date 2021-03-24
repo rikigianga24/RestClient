@@ -4,7 +4,7 @@ import React from "react"
 function Footer(){
     return(
         <div className="p-2">
-            Made by MonkeyBecomeSociety&copy;
+            Made by <b>MonkeyBecomeSociety</b>&copy;
         </div>
     );
     }
