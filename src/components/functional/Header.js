@@ -1,14 +1,22 @@
 import React from 'react';
 import { NavLink } from "react-router-dom"
-import { Navbar } from "react-bootstrap"
+import { Navbar, Nav } from "react-bootstrap"
 
 const Header = () => {
   return (
     <div>
       <>
-        <Navbar classNAme="">
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/post">Inserisci</NavLink>
+        <Navbar>
+          <Navbar.Brand>
+            <NavLink to="/">
+              <img src="./banana.png" width="64" height="64" />
+            </NavLink>
+          </Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link className="mr-4" href="/post">Inserisci</Nav.Link>
+            <Nav.Link className="mr-4" href="/put">Aggiorna dati</Nav.Link>
+            <Nav.Link className="mr-4" href="/delete">Elimina dati</Nav.Link>
+          </Nav>
         </Navbar>
       </>
     </div>

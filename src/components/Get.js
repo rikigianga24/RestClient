@@ -4,7 +4,7 @@ import PrintResponse from "./functional/PrintResponse"
 /**
  * Main Content per fare la richiesta GET
  */
-class GetData extends React.Component {
+class Get extends React.Component {
     constructor(props) {
         super(props)
 
@@ -23,4 +23,5 @@ class GetData extends React.Component {
         );
     }
 }
-export default GetData;
+
+export default Get;

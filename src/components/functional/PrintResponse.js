@@ -53,7 +53,7 @@ function PrintResponse(props) {
         <Chart 
           height = "450px"
           chartType = "LineChart"
-          loader = "<h5>Loading chart...</h5>"
+          loader = "Loading chart..."
           data = { array }
         /> 
       </div>

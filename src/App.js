@@ -1,13 +1,14 @@
 import React from "react";
 import Header from "./components/functional/Header";
 import Footer from "./components/functional/Footer.js";
-import GetData from "./components/GetData.js";
+import Get from "./components/Get.js";
 import Post from "./components/Post.js";
+import Put from "./components/Put.js";
+import Delete from "./components/Delete.js";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 class App extends React.Component 
@@ -21,16 +22,16 @@ class App extends React.Component
 
                     <Switch>
                         <Route exact path="/">
-                            <GetData />
+                            <Get />
                         </Route>
                         <Route exact path="/post">
                             <Post />
                         </Route>
                         <Route exact path="/put">
-
+                            <Put />
                         </Route>
                         <Route exact path="/delete">
-
+                            <Delete />
                         </Route>
                     </Switch>
 
