@@ -1,10 +1,13 @@
 import React from 'react'
 import Chart from "react-google-charts";
+import ServerDownAlert from "./ServerDownAlert"
 
-function PrintResponse(props) {
-    var risultato = null
+function GetResponse(props) {
+    let risultato = null
 
-    let xml = new XMLHttpRequest();
+    let array = null
+
+    /*let xml = new XMLHttpRequest();
 
     xml.onload = data => {
         risultato = JSON.parse(xml.responseText)
@@ -27,7 +30,7 @@ function PrintResponse(props) {
           { type: "number", label: "extTemp" },
           { type: "number", label: "extHum" }
         ]
-    );
+    );*
     
     if (!Array.isArray(risultato))
     {
@@ -46,18 +49,25 @@ function PrintResponse(props) {
               obj["extHum"]
             ]
         );
+    }*/
+
+    if (array)
+    {
+      return (
+        <div className="mt-3 mb-2">
+          <Chart 
+            height = "450px"
+            chartType = "LineChart"
+            loader = "Loading chart..."
+            data = { array }
+          /> 
+        </div>
+      );
     }
 
     return (
-      <div className="mt-3 mb-2">
-        <Chart 
-          height = "450px"
-          chartType = "LineChart"
-          loader = "Loading chart..."
-          data = { array }
-        /> 
-      </div>
+      <ServerDownAlert />
     );
 }
 
-export default PrintResponse;
+export default GetResponse;

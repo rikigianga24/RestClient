@@ -25,6 +25,19 @@ class Post extends React.Component
         let ext_hum = document.getElementById("post_ext_hum");
         let ext_temp = document.getElementById("post_ext_temp");
 
+        let obj = 
+            {
+                time: t,
+                aHum: a_hum,
+                aTemp: a_temp,
+                bHum: b_hum,
+                bTemp: b_temp,
+                extHum: ext_hum,
+                extTemp: ext_temp
+            }
+
+            console.log(obj)
+
         let xml = new XMLHttpRequest();
         
         xml.onload = data => {
@@ -49,7 +62,10 @@ class Post extends React.Component
     render()
     {
         return (
-            <FormPost error={this.state.error} onSubmit={event => this.handleSubmit(event)}/>
+            <div>
+                <h1> Post Form </h1>
+                <FormPost error={this.state.error} onSubmit={event => this.handleSubmit(event)}/>
+            </div>
         );
     }
 }

@@ -9,10 +9,11 @@ const Header = () => {
         <Navbar>
           <Navbar.Brand>
             <NavLink to="/">
-              <img src="./banana.png" width="64" height="64" />
+              <img src="./banana.png" width="64" height="64" alt="error on loading.."/>
             </NavLink>
           </Navbar.Brand>
           <Nav className="mr-auto">
+            <Nav.Link className="mr-4" href="/">Home</Nav.Link>
             <Nav.Link className="mr-4" href="/post">Inserisci</Nav.Link>
             <Nav.Link className="mr-4" href="/put">Aggiorna dati</Nav.Link>
             <Nav.Link className="mr-4" href="/delete">Elimina dati</Nav.Link>

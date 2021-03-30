@@ -1,5 +1,5 @@
 import React from 'react';
-import PrintResponse from "./functional/PrintResponse"
+import GetResponse from "./functional/GetResponse"
 
 /**
  * Main Content per fare la richiesta GET
@@ -16,7 +16,7 @@ class Get extends React.Component {
     render() {
         return (
             <div>
-                <PrintResponse 
+                <GetResponse 
                     url={this.state.url}
                 />
             </div>
