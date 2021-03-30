@@ -7,49 +7,55 @@ function GetResponse(props) {
 
     let array = null
 
-    /*let xml = new XMLHttpRequest();
+    try{
+      let xml = new XMLHttpRequest();
 
-    xml.onload = data => {
-        risultato = JSON.parse(xml.responseText)
+      xml.onload = data => {
+          risultato = JSON.parse(xml.responseText)
+      }
+
+      xml.open("GET", props.url, false)
+      xml.setRequestHeader("X-AUTH-TOKEN", "BANANA-TOKEN-2021")
+      xml.setRequestHeader("Accept", "application/json")
+      xml.send(null)
+
+      let array = [];
+
+      array.push(
+          [
+            { type: 'date', label: 'time'},
+            { type: "number", label: "aTemp" },
+            { type: "number", label: "aHum" },
+            { type: "number", label: "bTemp" },
+            { type: "number", label: "bHum" },
+            { type: "number", label: "extTemp" },
+            { type: "number", label: "extHum" }
+          ]
+      );
+      
+      if (!Array.isArray(risultato))
+      {
+        risultato = [risultato]
+      }
+
+      for (let obj of risultato) {
+          array.push(
+              [
+                new Date(obj["time"]),
+                obj["aTemp"],
+                obj["aHum"],
+                obj["bTemp"],
+                obj["bHum"],
+                obj["extTemp"],
+                obj["extHum"]
+              ]
+          );
+      }
+    }catch (err){
+      return (
+        <ServerDownAlert />
+      )
     }
-
-    xml.open("GET", props.url, false)
-    xml.setRequestHeader("X-AUTH-TOKEN", "BANANA-TOKEN-2021")
-    xml.setRequestHeader("Accept", "application/json")
-    xml.send(null)
-
-    let array = [];
-
-    array.push(
-        [
-          { type: 'date', label: 'time'},
-          { type: "number", label: "aTemp" },
-          { type: "number", label: "aHum" },
-          { type: "number", label: "bTemp" },
-          { type: "number", label: "bHum" },
-          { type: "number", label: "extTemp" },
-          { type: "number", label: "extHum" }
-        ]
-    );*
-    
-    if (!Array.isArray(risultato))
-    {
-      risultato = [risultato]
-    }
-
-    for (let obj of risultato) {
-        array.push(
-            [
-              new Date(obj["time"]),
-              obj["aTemp"],
-              obj["aHum"],
-              obj["bTemp"],
-              obj["bHum"],
-              obj["extTemp"],
-              obj["extHum"]
-            ]
-        );
-    }*/
 
     if (array)
     {
@@ -63,11 +69,11 @@ function GetResponse(props) {
           /> 
         </div>
       );
+    }else{
+      return (
+        <ServerDownAlert />
+      )
     }
-
-    return (
-      <ServerDownAlert />
-    );
 }
 
 export default GetResponse;
