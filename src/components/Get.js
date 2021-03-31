@@ -7,17 +7,14 @@ import GetResponse from "./functional/GetResponse"
 class Get extends React.Component {
     constructor(props) {
         super(props)
-
-        this.state = {
-            url: "http://38ca0bab3561.ngrok.io/api/observation"
-        }
+        this.url = props.url
     }
 
     render() {
         return (
             <div>
                 <GetResponse 
-                    url={this.state.url}
+                    url={this.url}
                 />
             </div>
         );

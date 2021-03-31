@@ -6,6 +6,7 @@ class Delete extends React.Component
     constructor(props)
     {
         super(props)
+        this.url = props.url
     }
 
     render()

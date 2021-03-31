@@ -6,9 +6,9 @@ class Post extends React.Component
     constructor(props)
     {
         super(props)
+        this.url = props.url
         this.state = {
-            error: null,
-            url: "http://38ca0bab3561.ngrok.io/api/observation"
+            error: null
         }
     }
 
@@ -53,7 +53,7 @@ class Post extends React.Component
             );
         }
 
-        xml.open("POST", this.state.url);
+        xml.open("POST", this.url);
         xml.setRequestHeader("X-AUTH-TOKEN", "BANANA-TOKEN-2021")
         xml.setRequestHeader("Accept", "application/json")
         xml.send();

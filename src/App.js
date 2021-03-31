@@ -11,10 +11,16 @@ import {
   Route
 } from "react-router-dom";
 
-let URL = "http://38ca0bab3561.ngrok.io/"
-
 class App extends React.Component 
 {    
+    constructor()
+    {
+        super()
+        this.state = {
+            url: "http://38ca0bab3561.ngrok.io/"
+        }
+    }
+
     render(){
         return( 
             <Router>
@@ -24,16 +30,16 @@ class App extends React.Component
 
                     <Switch>
                         <Route exact path="/">
-                            <Get url={URL} />
+                            <Get url={this.state.url} />
                         </Route>
                         <Route exact path="/post">
-                            <Post url={URL} />
+                            <Post url={this.state.url} />
                         </Route>
                         <Route exact path="/put">
-                            <Put url={URL} />
+                            <Put url={this.state.url} />
                         </Route>
                         <Route exact path="/delete">
-                            <Delete url={URL} />
+                            <Delete url={this.state.url} />
                         </Route>
                     </Switch>
 
