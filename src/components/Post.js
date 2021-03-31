@@ -7,7 +7,8 @@ class Post extends React.Component
     {
         super(props)
         this.state = {
-            error: null
+            error: null,
+            url: "http://38ca0bab3561.ngrok.io/api/observation"
         }
     }
 
@@ -46,7 +47,8 @@ class Post extends React.Component
 
             this.setState(
                 {
-                    error: null
+                    error: null,
+                    url: this.state.url
                 }
             );
         }

@@ -14,7 +14,7 @@ function FormPost(props)
         );
     }
     
-    return (<FormBootstrap onSubmit={props.onSubmit} />);
+    return (<FormBootstrap onSubmit={props.onSubmit}/>);
 }
 
 function FormBootstrap (props)
