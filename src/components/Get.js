@@ -9,7 +9,7 @@ class Get extends React.Component {
         super(props)
 
         this.state = {
-            url: "http://94.176.46.49:8000/api/observation"
+            url: "http://38ca0bab3561.ngrok.io/api/observation"
         }
     }
 

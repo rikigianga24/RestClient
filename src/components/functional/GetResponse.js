@@ -5,8 +5,8 @@ import ServerDownAlert from "./ServerDownAlert"
 function GetResponse(props) {
     let risultato = null
 
-    let array = null
-
+    var array = null
+    //console.log(props.url)
     try{
       let xml = new XMLHttpRequest();
 
@@ -19,7 +19,7 @@ function GetResponse(props) {
       xml.setRequestHeader("Accept", "application/json")
       xml.send(null)
 
-      let array = [];
+      array = [];
 
       array.push(
           [
