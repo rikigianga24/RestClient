@@ -8,7 +8,6 @@ class Put extends React.Component
     {
         super(props)
         this.state = {
-            url: "http://94.176.46.49:8000/api/observation",
             error: null
         }
     }
@@ -42,10 +41,7 @@ class Put extends React.Component
     render()
     {
         return (
-            <div>
-                <h1> Put Form </h1>
-                <FormPost error={this.state.error} onSubmit={event => this.handleSubmit(event)}/>
-            </div>
+            <FormPost error={this.state.error} onSubmit={event => this.handleSubmit(event)}/>
         );
     }
 }

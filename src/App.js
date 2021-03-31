@@ -11,6 +11,8 @@ import {
   Route
 } from "react-router-dom";
 
+let URL = "http://38ca0bab3561.ngrok.io/"
+
 class App extends React.Component 
 {    
     render(){
@@ -22,16 +24,16 @@ class App extends React.Component
 
                     <Switch>
                         <Route exact path="/">
-                            <Get />
+                            <Get url={URL} />
                         </Route>
                         <Route exact path="/post">
-                            <Post />
+                            <Post url={URL} />
                         </Route>
                         <Route exact path="/put">
-                            <Put />
+                            <Put url={URL} />
                         </Route>
                         <Route exact path="/delete">
-                            <Delete />
+                            <Delete url={URL} />
                         </Route>
                     </Switch>
 

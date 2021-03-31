@@ -9,14 +9,25 @@ const Header = () => {
         <Navbar>
           <Navbar.Brand>
             <NavLink to="/">
-              <img src="./banana.png" width="64" height="64" alt="error on loading.."/>
+              <img src="./icons/banana.png" width="90" height="90" alt="error on loading.."/>
             </NavLink>
           </Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link className="mr-4" href="/">Home</Nav.Link>
-            <Nav.Link className="mr-4" href="/post">Inserisci</Nav.Link>
-            <Nav.Link className="mr-4" href="/put">Aggiorna dati</Nav.Link>
-            <Nav.Link className="mr-4" href="/delete">Elimina dati</Nav.Link>
+            <Nav.Link href="/post">
+              <button className="btn">
+                <img src="./icons/insert.png" alt="insert data" width="36" height="36"/>
+              </button>
+            </Nav.Link>
+            <Nav.Link href="/put">
+              <button className="btn">
+                <img src="./icons/update-arrows.png" alt="insert data" width="36" height="36"/>
+              </button>
+            </Nav.Link>
+            <Nav.Link href="/delete">
+              <button className="btn">
+                <img src="./icons/cancel.png" alt="insert data" width="36" height="36"/>
+              </button>
+            </Nav.Link>
           </Nav>
         </Navbar>
       </>
