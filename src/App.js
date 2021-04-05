@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "./components/functional/Header";
-import Footer from "./components/functional/Footer.js";
 import Get from "./components/Get.js";
 import Post from "./components/Post.js";
 import Put from "./components/Put.js";
@@ -17,14 +16,14 @@ class App extends React.Component
     {
         super()
         this.state = {
-            url: "http://38ca0bab3561.ngrok.io/"
+            url: "http://38ca0bab3561.ngrok.io/api/observation"
         }
     }
 
     render(){
         return( 
             <Router>
-                <div className="container">
+                <div>
 
                     <Header />
 
@@ -42,8 +41,6 @@ class App extends React.Component
                             <Delete url={this.state.url} />
                         </Route>
                     </Switch>
-
-                    <Footer />
                 </div>
             </Router>
         )
