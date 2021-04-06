@@ -17,13 +17,13 @@ class Post extends React.Component
         event.preventDefault();
 
         // FIXME
-        let t = document.getElementById("post_time");
-        let a_hum = document.getElementById("post_a_hum");
-        let a_temp = document.getElementById("post_a_temp");
-        let b_temp = document.getElementById("post_b_temp");
-        let b_hum = document.getElementById("post_b_hum");
-        let ext_hum = document.getElementById("post_ext_hum");
-        let ext_temp = document.getElementById("post_ext_temp");
+        let t = document.getElementById("post_time").value;
+        let a_hum = document.getElementById("post_a_hum").value;
+        let a_temp = document.getElementById("post_a_temp").value;
+        let b_temp = document.getElementById("post_b_temp").value;
+        let b_hum = document.getElementById("post_b_hum").value;
+        let ext_hum = document.getElementById("post_ext_hum").value;
+        let ext_temp = document.getElementById("post_ext_temp").value;
 
         let obj = 
             {
@@ -62,8 +62,7 @@ class Post extends React.Component
 
         xml.open("POST", this.url);
         xml.setRequestHeader("X-AUTH-TOKEN", "BANANA-TOKEN-2021")
-        xml.setRequestHeader("Accept", "application/json")
-        xml.send();
+        xml.send(JSON.stringify(obj));
     }
 
     render()
