@@ -5,12 +5,9 @@ function FormPost(props)
     if (props.error !== null)
     {
         return (
-            <div>
-                <Form onSubmit={props.onSubmit}/>
-                <Alert variant={"error"}>
-                    {props.error}
-                </Alert>
-            </div>
+            <Alert variant={"danger"}>
+                {props.error}
+            </Alert>
         );
     }
     

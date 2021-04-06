@@ -1,5 +1,6 @@
 import React from 'react';
 import Chart from "react-google-charts";
+import ServerDownAlert from "./functional/ServerDownAlert"
 
 class Get extends React.Component 
 {
@@ -62,8 +63,19 @@ class Get extends React.Component
                 }
             )
         }
+
+        xml.ontimeout = event =>
+        {
+            this.setState(
+                {
+                    isLoading: false,
+                    serverDown: true
+                }
+            )
+        }
   
         xml.open("GET", this.url, true)
+        xml.timeout = 6000
         xml.setRequestHeader("X-AUTH-TOKEN", "BANANA-TOKEN-2021")
         xml.send(null)
     }
@@ -73,7 +85,13 @@ class Get extends React.Component
         if (this.state.isLoading)
         {
             return (
-                <h3>Sto caricando i dati...</h3>
+                <h4>Sto caricando i dati...</h4>
+            );
+        }
+        else if (this.state.serverDown)
+        {
+            return (
+                <ServerDownAlert />
             );
         }
 

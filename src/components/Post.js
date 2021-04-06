@@ -40,17 +40,24 @@ class Post extends React.Component
 
         let xml = new XMLHttpRequest();
         
-        xml.onload = data => {
-
-            // FIXME 
-            // da data va preso l'eventuale errore
-
-            this.setState(
-                {
-                    error: null,
-                    url: this.state.url
-                }
-            );
+        xml.onload = data => 
+        {
+            if (xml.status !== 200)
+            {
+                this.setState(
+                    {
+                        error: <h4>Il server ha restituito l'errore {xml.status}</h4>
+                    }
+                );
+            }
+            else
+            {
+                this.setState(
+                    {
+                        error: null
+                    }
+                );
+            }
         }
 
         xml.open("POST", this.url);

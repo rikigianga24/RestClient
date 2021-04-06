@@ -16,7 +16,7 @@ class App extends React.Component
     {
         super()
         this.state = {
-            url: "http://38ca0bab3561.ngrok.io/api/observation"
+            url: "http://38ca0bab3561.ngrok.io/api/observation/"
         }
     }
 
