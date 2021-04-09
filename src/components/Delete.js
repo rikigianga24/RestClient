@@ -101,7 +101,7 @@ class Delete extends React.Component
         }
 
         xml.open("DELETE", url, true)
-        xml.timeout = 8000
+        xml.timeout = 16000
         xml.setRequestHeader("X-AUTH-TOKEN", "BANANA-TOKEN-2021")
         xml.send()
     }

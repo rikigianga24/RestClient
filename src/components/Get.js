@@ -75,7 +75,7 @@ class Get extends React.Component
         }
   
         xml.open("GET", this.url, true)
-        xml.timeout = 6000
+        xml.timeout = 16000
         xml.setRequestHeader("X-AUTH-TOKEN", "BANANA-TOKEN-2021")
         xml.send(null)
     }
