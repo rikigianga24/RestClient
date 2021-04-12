@@ -7,7 +7,6 @@ class Get extends React.Component
     constructor(props) 
     {
         super(props)
-        this.url = props.url
         this.state =
         {
             isLoading: true
@@ -74,7 +73,7 @@ class Get extends React.Component
             )
         }
   
-        xml.open("GET", this.url, true)
+        xml.open("GET", 'http://ee8ab2dfef19.ngrok.io/api/observation/', true)
         xml.timeout = 16000
         xml.setRequestHeader("X-AUTH-TOKEN", "BANANA-TOKEN-2021")
         xml.send(null)

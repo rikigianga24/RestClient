@@ -1,48 +1,32 @@
 import React from "react";
-import Header from "./components/functional/Header";
 import Get from "./components/Get.js";
-import Post from "./components/Post.js";
-import Put from "./components/Put.js";
-import Delete from "./components/Delete.js";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route
+    BrowserRouter as Router,
+    Switch,
+    Route
 } from "react-router-dom";
+import Header from "./components/functional/Header"
 
 class App extends React.Component 
-{    
-    constructor()
+{
+    constructor() 
     {
         super()
-        this.state = {
-            url: "http://38ca0bab3561.ngrok.io/api/observation/"
-        }
     }
 
-    render(){
-        return( 
-            <Router>
-                <div>
-
+    render() 
+    {
+        return (
+            <div>
+                <Router>
                     <Header />
-
                     <Switch>
                         <Route exact path="/">
-                            <Get url={this.state.url} />
-                        </Route>
-                        <Route exact path="/post">
-                            <Post url={this.state.url} />
-                        </Route>
-                        <Route exact path="/put">
-                            <Put url={this.state.url} />
-                        </Route>
-                        <Route exact path="/delete">
-                            <Delete url={this.state.url} />
+                            <Get />
                         </Route>
                     </Switch>
-                </div>
-            </Router>
+                </Router>
+            </div>
         )
     }
 }
