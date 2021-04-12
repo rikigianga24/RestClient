@@ -1,11 +1,26 @@
 import { Nav, Navbar } from "react-bootstrap"
+import { useLocation } from "react-router-dom"
 
-function Header (props)
+function Header ()
 {
+    let back = null
+    if (useLocation().pathname !== "/")
+    {
+        back = <Navbar.Brand href="/">
+            <img src="/icons/back.png" alt="back" width="48" height="48" />
+        </Navbar.Brand>
+    }
+
     return (
-        <Navbar>
+        <Navbar className="mt-3 mb-3">
+            {back}
             <Nav className="ms-auto">
-                <Nav.Link href="/login">Login</Nav.Link>
+                <Nav.Link href="/login">
+                    <img src="/icons/login.png" alt="login" width="48" height="48" />
+                </Nav.Link>
+                <Nav.Link href="/settings">
+                    <img src="/icons/settings.png" alt="settings" width="48" height="48" />
+                </Nav.Link>
             </Nav>
         </Navbar>
     );
