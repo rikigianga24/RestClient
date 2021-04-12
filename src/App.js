@@ -6,7 +6,7 @@ import {
     Route
 } from "react-router-dom";
 import Header from "./components/functional/Header"
-import Settings from "./components/Settings"
+import Settings from "./components/functional/Settings"
 
 class App extends React.Component 
 {

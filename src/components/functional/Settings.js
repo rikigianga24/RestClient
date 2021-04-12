@@ -3,7 +3,7 @@ import { Col, ListGroup, Media, Row, Tab } from "react-bootstrap"
 function Settings ()
 {
     return (
-        <Tab.Container>
+        <Tab.Container defaultActiveKey="#info">
             <Row>
                 <Col sm={4}>
                     <ListGroup>
