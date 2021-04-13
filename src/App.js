@@ -7,19 +7,16 @@ import {
 } from "react-router-dom";
 import Header from "./components/functional/Header"
 import Settings from "./components/functional/Settings"
+import History from "./components/History"
+import { Container } from "react-bootstrap"
 
 class App extends React.Component 
 {
-    constructor() 
-    {
-        super()
-    }
-
+    
     render() 
     {
-
         return (
-            <div>
+            <Container fluid>
                 <Router>
                     <Header />
                     <Switch>
@@ -29,9 +26,12 @@ class App extends React.Component
                         <Route exact path="/settings">
                             <Settings />
                         </Route>
+                        <Route exact path="/storage">
+                            <History />
+                        </Route>
                     </Switch>
                 </Router>
-            </div>
+            </Container>
         )
     }
 }

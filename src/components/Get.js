@@ -1,110 +1,117 @@
-import React from 'react';
+import React from "react";
 import Chart from "react-google-charts";
-import ServerDownAlert from "./functional/ServerDownAlert"
+import ServerDownAlert from "./functional/ServerDownAlert";
+import { Container, Table } from "react-bootstrap";
 
-class Get extends React.Component 
-{
-    constructor(props) 
-    {
-        super(props)
-        this.state =
-        {
-            isLoading: true
-        }
+class Get extends React.Component {
+  constructor(props) 
+  {
+    super(props);
+    this.arrayDati = [];
+    this.state = {
+      isLoading: true,
+  };
 
-        this.getRequest()
-    }
-
-    getRequest()
-    {
-        let xml = new XMLHttpRequest();
-
-        xml.onload = data => 
-        {
-            let risultato = JSON.parse(xml.responseText)
-            let array = [];
-
-            array.push(
-                [
-                  { type: 'date', label: 'time'},
-                  { type: "number", label: "aTemp" },
-                  { type: "number", label: "aHum" },
-                  { type: "number", label: "bTemp" },
-                  { type: "number", label: "bHum" },
-                  { type: "number", label: "extTemp" },
-                  { type: "number", label: "extHum" }
-                ]
-            );
-            
-            if (!Array.isArray(risultato))
-            {
-              risultato = [risultato]
-            }
+    setInterval(() => {
+      let dato = 10 + Math.random() * 90;
+      this.arrayDati.push(dato);
       
-            for (let obj of risultato) {
-              array.push(
-                  [
-                    new Date(obj["time"]),
-                    obj["aTemp"],
-                    obj["aHum"],
-                    obj["bTemp"],
-                    obj["bHum"],
-                    obj["extTemp"],
-                    obj["extHum"]
-                  ]
-              );
-            }
+      /*
+      let led = null
 
-            this.setState(
-                {
-                    isLoading: false,
-                    data: array
-                }
-            )
-        }
+      if (dato <= 75)
+      {
+        led = <div class="led-green"></div>
+      }
+      else if (dato > 75 && dato <= 90)
+      {
+        led = <div class="led-yellow"></div>
+      }
+      else
+      {
+        led = <div class="led-red"></div>
+      }
+    */
 
-        xml.ontimeout = event =>
-        {
-            this.setState(
-                {
-                    isLoading: false,
-                    serverDown: true
-                }
-            )
-        }
-  
-        xml.open("GET", 'http://ee8ab2dfef19.ngrok.io/api/observation/', true)
-        xml.timeout = 16000
-        xml.setRequestHeader("X-AUTH-TOKEN", "BANANA-TOKEN-2021")
-        xml.send(null)
-    }
+      this.setState({
+        isLoading: false,
+        data: [
+          ["Label", "Value"],
+          ["°C", dato],
+        ]
+      });
+    }, 1000);
+  }
 
-    render() 
+  getMax() 
+  {
+    return Math.max(...this.arrayDati);
+  }
+
+  getMin() 
+  {
+    return Math.min(...this.arrayDati);
+  }
+
+  getAverage() 
+  {
+    return this.arrayDati.reduce((a, b) => a + b, 0) / this.arrayDati.length;
+  }
+
+  render() 
+  {
+    if (this.state.isLoading) 
     {
-        if (this.state.isLoading)
-        {
-            return (
-                <h4>Sto caricando i dati...</h4>
-            );
-        }
-        else if (this.state.serverDown)
-        {
-            return (
-                <ServerDownAlert />
-            );
-        }
-
-        return (
-            <div className="mt-3 mb-2">
-                <Chart 
-                    height = "450px"
-                    chartType = "LineChart"
-                    loader = "Loading chart..."
-                    data = { this.state.data }
-                />
-            </div>
-        );
+      return <h4>Sto caricando i dati...</h4>;
+    } 
+    else if (this.state.serverDown) 
+    {
+      return <ServerDownAlert />;
     }
+
+    return (
+      <div className="container-fluid h-100">
+        <div className="d-flex flex-column align-items-center">
+          <Chart
+            height="450px"
+            chartType="Gauge"
+            loader="Loading chart..."
+            data={this.state.data}
+            options={{
+              redFrom: 90,
+              redTo: 100,
+              yellowFrom: 75,
+              yellowTo: 90,
+              minorTicks: 5,
+            }}
+            legendToggle
+          />
+          <Table bordered hover striped style={{ width: "300px" }}>
+            <tbody>
+              <tr className="text-center">
+                <td>
+                  <b>Max</b>
+                </td>
+                <td>{parseFloat(this.getMax()).toPrecision(5)}</td>
+              </tr>
+              <tr className="text-center">
+                <td>
+                  <b>Media</b>
+                </td>
+                <td>{parseFloat(this.getAverage()).toPrecision(5)}</td>
+              </tr>
+              <tr className="text-center">
+                <td>
+                  <b>Min</b>
+                </td>
+                <td>{parseFloat(this.getMin()).toPrecision(5)}</td>
+              </tr>
+            </tbody>
+          </Table>
+          </div>
+      </div>
+    );
+  }
 }
 
 export default Get;

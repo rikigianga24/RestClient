@@ -14,6 +14,9 @@ function Header ()
     return (
         <Navbar>
             {back}
+            <Nav.Link href="/storage">
+                <img src="/icons/history.png" alt="history" width="48" height="48" />
+            </Nav.Link>
             <Nav className="ms-auto">
                 <Nav.Link href="/login">
                     <img src="/icons/login.png" alt="login" width="48" height="48" />
