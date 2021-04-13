@@ -12,7 +12,7 @@ function Header ()
     }
 
     return (
-        <Navbar className="mt-3 mb-3">
+        <Navbar>
             {back}
             <Nav className="ms-auto">
                 <Nav.Link href="/login">
