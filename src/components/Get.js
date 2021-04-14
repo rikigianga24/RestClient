@@ -2,36 +2,51 @@ import React from "react";
 import Chart from "react-google-charts";
 import ServerDownAlert from "./functional/ServerDownAlert";
 import { Container, Table } from "react-bootstrap";
+import ValuesTable from "./functional/ValuesTable"
 
-class Get extends React.Component {
+class Get extends React.Component 
+{
   constructor(props) 
   {
     super(props);
     this.arrayDati = [];
     this.state = {
-      isLoading: true,
-  };
+      isLoading: true
+    }
 
-    setInterval(() => {
+    this.max = 0
+    this.min = 100
+  }
+
+  getMax() 
+  {
+    return this.max
+  }
+
+  getMin() 
+  {
+    return this.min
+  }
+
+  getAverage() 
+  {
+    return this.arrayDati.reduce((a, b) => a + b, 0) / this.arrayDati.length
+  }
+
+  componentDidMount()
+  {
+    this.interval = setInterval(() => {
       let dato = 10 + Math.random() * 90;
       this.arrayDati.push(dato);
-      
-      /*
-      let led = null
 
-      if (dato <= 75)
+      if (dato > this.max)
       {
-        led = <div class="led-green"></div>
+        this.max = dato
       }
-      else if (dato > 75 && dato <= 90)
+      else if (dato < this.min)
       {
-        led = <div class="led-yellow"></div>
+        this.min = dato
       }
-      else
-      {
-        led = <div class="led-red"></div>
-      }
-    */
 
       this.setState({
         isLoading: false,
@@ -39,23 +54,13 @@ class Get extends React.Component {
           ["Label", "Value"],
           ["°C", dato],
         ]
-      });
-    }, 1000);
+      })
+    }, 1000)
   }
 
-  getMax() 
+  componentWillUnmount()
   {
-    return Math.max(...this.arrayDati);
-  }
-
-  getMin() 
-  {
-    return Math.min(...this.arrayDati);
-  }
-
-  getAverage() 
-  {
-    return this.arrayDati.reduce((a, b) => a + b, 0) / this.arrayDati.length;
+    clearInterval(this.interval)
   }
 
   render() 
@@ -70,7 +75,7 @@ class Get extends React.Component {
     }
 
     return (
-      <div className="container-fluid h-100">
+      <Container fluid className="h-100">
         <div className="d-flex flex-column align-items-center">
           <Chart
             height="450px"
@@ -86,30 +91,9 @@ class Get extends React.Component {
             }}
             legendToggle
           />
-          <Table bordered hover striped style={{ width: "300px" }}>
-            <tbody>
-              <tr className="text-center">
-                <td>
-                  <b>Max</b>
-                </td>
-                <td>{parseFloat(this.getMax()).toPrecision(5)}</td>
-              </tr>
-              <tr className="text-center">
-                <td>
-                  <b>Media</b>
-                </td>
-                <td>{parseFloat(this.getAverage()).toPrecision(5)}</td>
-              </tr>
-              <tr className="text-center">
-                <td>
-                  <b>Min</b>
-                </td>
-                <td>{parseFloat(this.getMin()).toPrecision(5)}</td>
-              </tr>
-            </tbody>
-          </Table>
+          <ValuesTable max={this.getMax()} min={this.getMin()} average={this.getAverage()} />
           </div>
-      </div>
+        </Container>
     );
   }
 }
