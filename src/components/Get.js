@@ -1,21 +1,21 @@
 import React from "react";
 import Chart from "react-google-charts";
 import ServerDownAlert from "./functional/ServerDownAlert";
-import { Container, Table } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import ValuesTable from "./functional/ValuesTable"
 
 class Get extends React.Component 
 {
   constructor(props) 
   {
-    super(props);
-    this.arrayDati = [];
+    super(props)
+    this.arrayDati = []
     this.state = {
       isLoading: true
     }
 
     this.max = 0
-    this.min = 100
+    this.min = 0
   }
 
   getMax() 
@@ -36,14 +36,19 @@ class Get extends React.Component
   componentDidMount()
   {
     this.interval = setInterval(() => {
-      let dato = 10 + Math.random() * 90;
+      let dato = 10 + Math.random() * 90
       this.arrayDati.push(dato);
 
       if (dato > this.max)
       {
         this.max = dato
       }
-      else if (dato < this.min)
+      
+      if (this.min === 0)
+      {
+        this.min = dato
+      }
+      else if(dato < this.min)
       {
         this.min = dato
       }

@@ -5,14 +5,17 @@ import { Container } from "react-bootstrap"
 
 class History extends React.Component
 {
-    constructor()
+    constructor (props)
     {
-        super()
+        super(props)
 
         this.state = {
             isLoading: true
         }
+    }
 
+    componentDidMount ()
+    {
         this.loadData()
     }
 
