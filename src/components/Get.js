@@ -1,15 +1,20 @@
 import React from "react";
 import Chart from "react-google-charts";
 import ServerDownAlert from "./functional/ServerDownAlert";
-import { Grid, Paper } from "@material-ui/core"
+import { Grid } from "@material-ui/core"
+import ValuesTable from "./functional/ValuesTable"
 
-class Get extends React.Component 
+class Get extends React.PureComponent 
 {
   constructor(props) 
   {
     super(props)
+    
+    let darkMode = props.darkMode
+
     this.arrayDati = []
     this.state = {
+      darkMode,
       isLoading: true
     }
 
@@ -32,11 +37,9 @@ class Get extends React.Component
     return this.arrayDati.reduce((a, b) => a + b, 0) / this.arrayDati.length
   }
 
-  componentDidMount ()
+  loadData ()
   {
-    this.interval = setInterval(() => 
-    {
-      let dato = 10 + Math.random() * 90
+    let dato = 10 + Math.random() * 90
       this.arrayDati.push(dato);
 
       if (dato > this.max)
@@ -60,6 +63,18 @@ class Get extends React.Component
           ["°C", dato],
         ]
       })
+  }
+
+  shouldComponentUpdate ()
+  {
+    return true
+  }
+
+  componentDidMount ()
+  {
+    this.interval = setInterval(() => 
+    {
+      this.loadData()
     }, 1000)
   }
 
@@ -80,44 +95,27 @@ class Get extends React.Component
     }
 
     return (
-      <Grid container spacing="5" className="h-100">
-        <Grid item xs={4}>
-          <Grid container direction="column" className="h-100" alignItems="stretch" justify="center" spacing="3">
-            <Grid item>
-              <Paper elevation={3} style={{backgroundColor: '#121212'}}>
-                <h4>Max</h4>
-                {this.getMax().toPrecision(5)}
-              </Paper>
-            </Grid>
-            <Grid item>
-              <Paper elevation={3} style={{backgroundColor: '#121212'}}>
-                <h4>Average</h4>
-                {this.getAverage().toPrecision(5)}
-              </Paper>
-            </Grid>
-            <Grid item>
-              <Paper elevation={3} style={{backgroundColor: '#121212'}}>
-                <h4>Min</h4>
-                {this.getMin().toPrecision(5)}
-              </Paper>
-            </Grid>
-          </Grid>
+      <Grid container className="h-100">
+        <Grid item xs={4} lg={3}>
+          <ValuesTable bg={this.state.darkMode.containerBg} textColor={this.state.darkMode.textColor} average={this.getAverage()} min={this.getMin()} max={this.getMax()} />
         </Grid>
-        <Grid item xs={8}>
-          <Chart
-            height="450px"
-            chartType="Gauge"
-            loader="Loading chart..."
-            data={this.state.data}
-            options={{
-              redFrom: 90,
-              redTo: 100,
-              yellowFrom: 75,
-              yellowTo: 90,
-              minorTicks: 5,
-            }}
-            legendToggle
-          />
+        <Grid item xs={8} lg={9}>
+          <div className="d-flex justify-content-center">
+            <Chart
+              height="450px"
+              chartType="Gauge"
+              loader="Loading chart..."
+              data={this.state.data}
+              options={{
+                redFrom: 90,
+                redTo: 100,
+                yellowFrom: 75,
+                yellowTo: 90,
+                minorTicks: 5,
+              }}
+              legendToggle
+            />
+          </div>
         </Grid>
       </Grid>
     );
