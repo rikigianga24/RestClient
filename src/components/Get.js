@@ -1,8 +1,7 @@
 import React from "react";
 import Chart from "react-google-charts";
 import ServerDownAlert from "./functional/ServerDownAlert";
-import { Container } from "react-bootstrap";
-import ValuesTable from "./functional/ValuesTable"
+import { Grid, Paper } from "@material-ui/core"
 
 class Get extends React.Component 
 {
@@ -33,9 +32,10 @@ class Get extends React.Component
     return this.arrayDati.reduce((a, b) => a + b, 0) / this.arrayDati.length
   }
 
-  componentDidMount()
+  componentDidMount ()
   {
-    this.interval = setInterval(() => {
+    this.interval = setInterval(() => 
+    {
       let dato = 10 + Math.random() * 90
       this.arrayDati.push(dato);
 
@@ -63,7 +63,7 @@ class Get extends React.Component
     }, 1000)
   }
 
-  componentWillUnmount()
+  componentWillUnmount ()
   {
     clearInterval(this.interval)
   }
@@ -80,8 +80,30 @@ class Get extends React.Component
     }
 
     return (
-      <Container fluid className="h-100">
-        <div className="d-flex flex-column align-items-center">
+      <Grid container spacing="5" className="h-100">
+        <Grid item xs={4}>
+          <Grid container direction="column" className="h-100" alignItems="stretch" justify="center" spacing="3">
+            <Grid item>
+              <Paper elevation={3} style={{backgroundColor: '#121212'}}>
+                <h4>Max</h4>
+                {this.getMax().toPrecision(5)}
+              </Paper>
+            </Grid>
+            <Grid item>
+              <Paper elevation={3} style={{backgroundColor: '#121212'}}>
+                <h4>Average</h4>
+                {this.getAverage().toPrecision(5)}
+              </Paper>
+            </Grid>
+            <Grid item>
+              <Paper elevation={3} style={{backgroundColor: '#121212'}}>
+                <h4>Min</h4>
+                {this.getMin().toPrecision(5)}
+              </Paper>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={8}>
           <Chart
             height="450px"
             chartType="Gauge"
@@ -96,9 +118,8 @@ class Get extends React.Component
             }}
             legendToggle
           />
-          <ValuesTable max={this.getMax()} min={this.getMin()} average={this.getAverage()} />
-          </div>
-        </Container>
+        </Grid>
+      </Grid>
     );
   }
 }

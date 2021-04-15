@@ -1,5 +1,7 @@
-import { Nav, Navbar } from "react-bootstrap"
+import { Navbar } from "react-bootstrap"
 import { useLocation } from "react-router-dom"
+import { AppBar, Toolbar, IconButton } from "@material-ui/core"
+import MenuIcon from "@material-ui/icons/Menu"
 
 function Header ()
 {
@@ -12,20 +14,13 @@ function Header ()
     }
 
     return (
-        <Navbar>
-            {back}
-            <Nav.Link href="/storage">
-                <img src="/icons/history.png" alt="history" width="48" height="48" />
-            </Nav.Link>
-            <Nav className="ms-auto">
-                <Nav.Link href="/login">
-                    <img src="/icons/login.png" alt="login" width="48" height="48" />
-                </Nav.Link>
-                <Nav.Link href="/settings">
-                    <img src="/icons/settings.png" alt="settings" width="48" height="48" />
-                </Nav.Link>
-            </Nav>
-        </Navbar>
+        <AppBar position="static" style={{backgroundColor: '#121212'}} >
+            <Toolbar>
+                <IconButton edge="start" color="inherit" aria-label="menu">
+                    <MenuIcon />
+                </IconButton>
+            </Toolbar>
+        </AppBar>
     );
 }
 

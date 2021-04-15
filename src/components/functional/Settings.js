@@ -1,4 +1,4 @@
-import { Col, ListGroup, Media, Row, Tab , Card, Figure } from "react-bootstrap";
+import { Col, ListGroup, Media, Row, Tab, Figure } from "react-bootstrap";
 
 function Settings() {
   return (
@@ -56,8 +56,6 @@ function Settings() {
               </div>
             </Tab.Pane>
             <Tab.Pane eventKey="#autori">
-        
-        
               <Figure>
                 <Figure.Image
                     width={171}

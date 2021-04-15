@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Form, Col } from "react-bootstrap";
-import Chart from "react-google-charts";
 
 class FormLog extends React.Component {
   render() {

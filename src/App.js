@@ -8,18 +8,20 @@ import {
 import Header from "./components/functional/Header"
 import Settings from "./components/functional/Settings"
 import History from "./components/History"
-import { Container } from "react-bootstrap"
-import FormLog from "./components/FormLog.js";
+import { Container as MaterialContainer, Fab } from "@material-ui/core"
+import FormLog from "./components/FormLog.js"
+import DarkModeIcon from "@material-ui/icons/BrightnessHigh"
 
 class App extends React.Component 
 {
-    
     render() 
     {
+
         return (
-            <Container fluid>
+            <MaterialContainer maxWidth="lg">
                 <Router>
                     <Header />
+                    <div className="mt-5"></div>
                     <Switch>
                         <Route exact path="/">
                             <Get />
@@ -35,7 +37,10 @@ class App extends React.Component
                         </Route>
                     </Switch>
                 </Router>
-            </Container>
+                <Fab aria-label="darkMode">
+                    <DarkModeIcon />
+                </Fab>
+            </MaterialContainer>
         )
     }
 }
