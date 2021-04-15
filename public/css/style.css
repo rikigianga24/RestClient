@@ -13,6 +13,12 @@
     src: url(/fonts/OpenSans-Light.ttf);
 }
 
+.responsive-image {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
 html, body
 {
     height: 100%;
