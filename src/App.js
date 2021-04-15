@@ -22,7 +22,7 @@ class App extends React.Component
         this.state = {
             darkMode: {
                 containerBg: '#323232',
-                appBg: '#323232',
+                appBg: '#5b5b5b',
                 textColor: 'white',
                 isDarkMode: true,
                 icon: <LightModeIcon />
@@ -56,7 +56,7 @@ class App extends React.Component
                 return {
                     darkMode: {
                         containerBg: '#323232',
-                        appBg: '#323232',
+                        appBg: '#5b5b5b',
                         textColor: 'white',
                         isDarkMode: true,
                         icon: <LightModeIcon />

@@ -4,17 +4,14 @@ import ServerDownAlert from "./functional/ServerDownAlert";
 import { Grid } from "@material-ui/core"
 import ValuesTable from "./functional/ValuesTable"
 
-class Get extends React.PureComponent 
+class Get extends React.Component 
 {
   constructor(props) 
   {
     super(props)
-    
-    let darkMode = props.darkMode
 
     this.arrayDati = []
     this.state = {
-      darkMode,
       isLoading: true
     }
 
@@ -97,7 +94,7 @@ class Get extends React.PureComponent
     return (
       <Grid container className="h-100">
         <Grid item xs={4} lg={3}>
-          <ValuesTable bg={this.state.darkMode.containerBg} textColor={this.state.darkMode.textColor} average={this.getAverage()} min={this.getMin()} max={this.getMax()} />
+          <ValuesTable bg={this.props.darkMode.appBg} textColor={this.props.darkMode.textColor} average={this.getAverage()} min={this.getMin()} max={this.getMax()} />
         </Grid>
         <Grid item xs={8} lg={9}>
           <div className="d-flex justify-content-center">
