@@ -1,28 +1,14 @@
-import { Nav, Navbar } from "react-bootstrap"
-import { useLocation } from "react-router-dom"
+import { Button, Nav, Navbar } from "react-bootstrap"
 
-function Header ()
+function Header (props)
 {
-    let back = null
-    if (useLocation().pathname !== "/")
-    {
-        back = <Navbar.Brand href="/">
-            <img src="/icons/back.png" alt="back" width="48" height="48" />
-        </Navbar.Brand>
-    }
-
     return (
-        <Navbar>
-            {back}
+        <div className="p-2" style={{backgroundColor: props.darkMode.navbarBg}}>
+            <Button onClick={props.activeDarkMode}>{props.darkMode.text}</Button>
             <Nav className="ms-auto">
-                <Nav.Link href="/login">
-                    <img src="/icons/login.png" alt="login" width="48" height="48" />
-                </Nav.Link>
-                <Nav.Link href="/settings">
-                    <img src="/icons/settings.png" alt="settings" width="48" height="48" />
-                </Nav.Link>
+
             </Nav>
-        </Navbar>
+        </div>
     );
 }
 
