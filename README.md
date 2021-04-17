@@ -19,8 +19,5 @@ L'app vi mostrerà una tabelle contentente tutti i dati ottenuti da un sensore d
 temperatura nel 2019.
 Questo viene fatto utilizzando un websercive con un database.
 
-## Framework
-Per lo sviluppo dell'app abbiamo fatto affidamento a REACT
-
 ## Webservice
 https://github.com/J-Dany/RestWB_Symfony
