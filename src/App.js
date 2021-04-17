@@ -61,7 +61,7 @@ class App extends React.Component {
     render() {
         return (
             <div style={{ backgroundColor: this.state.darkMode.containerBg, height: '100%' }}>
-                <div className="container">
+                <div className="container-fluid">
                     <Router>
                         <Header activeDarkMode={() => this.activeDarkMode()} darkMode={this.state.darkMode} />
                         <Switch>

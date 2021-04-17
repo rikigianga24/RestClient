@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col, InputGroup, Row, Button } from 'react-bootstrap';
 import ServerDownAlert from "./functional/ServerDownAlert"
 import TableValues from "./functional/TableValues"
 import Request from "../classes/Request"
@@ -126,10 +126,51 @@ class Get extends React.Component {
             );
         }
 
-        console.log(this.state)
+        let m = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]
+        let months = []
+
+        for (let month of m)
+        {
+            months.push(
+                <option>{month}</option>
+            )
+        }
 
         return (
-            <div className="mt-3">
+            <div className="mt-3 h-100">
+                <Row className="mb-3">
+                    <Col xs={3}>
+                        <InputGroup>
+                            <InputGroup.Prepend>
+                                <InputGroup.Text>Giorno</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <input type="date" className="form-control" />
+                        </InputGroup>
+                    </Col>
+                    <Col xs={3}>
+                        <InputGroup>
+                            <InputGroup.Prepend>
+                                <InputGroup.Text>Mese</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <select className="form-control">
+                                {months}
+                            </select>
+                        </InputGroup>
+                    </Col>
+                    <Col xs={3}>
+                        <InputGroup>
+                            <InputGroup.Prepend>
+                                <InputGroup.Text>Anno:</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <select className="form-control">
+                                <option>Nothing</option>
+                            </select>
+                        </InputGroup>
+                    </Col>
+                    <Col xs={3}>
+                        <Button className="w-100">Seleziona</Button>
+                    </Col>
+                </Row>
                 <Row>
                     <Col xs={12} md={3}>
                         <TableValues
