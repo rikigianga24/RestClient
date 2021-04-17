@@ -72,67 +72,50 @@ class Get extends React.Component {
 
         this.loadAvgs()
 
-        new Promise(
-            (resolve, reject) => {
-                let xml = new XMLHttpRequest();
+        let req = new Request()
 
-                xml.onload = data => {
-                    let risultato = JSON.parse(xml.responseText)
-                    let array = [];
+        req.getAllData()
+            .then(value => {
+                let risultato = value
+                let array = []
 
+                array.push(
+                    [
+                        { type: 'date', label: 'time' },
+                        { type: "number", label: "aTemp" },
+                        { type: "number", label: "aHum" },
+                        { type: "number", label: "bTemp" },
+                        { type: "number", label: "bHum" },
+                        { type: "number", label: "extTemp" },
+                        { type: "number", label: "extHum" }
+                    ]
+                )
+
+                if (!Array.isArray(risultato)) {
+                    risultato = [risultato]
+                }
+
+                for (let obj of risultato) {
                     array.push(
                         [
-                            { type: 'date', label: 'time' },
-                            { type: "number", label: "aTemp" },
-                            { type: "number", label: "aHum" },
-                            { type: "number", label: "bTemp" },
-                            { type: "number", label: "bHum" },
-                            { type: "number", label: "extTemp" },
-                            { type: "number", label: "extHum" }
+                            new Date(obj["time"]),
+                            obj["aTemp"],
+                            obj["aHum"],
+                            obj["bTemp"],
+                            obj["bHum"],
+                            obj["extTemp"],
+                            obj["extHum"]
                         ]
                     )
-
-                    if (!Array.isArray(risultato)) {
-                        risultato = [risultato]
-                    }
-
-                    for (let obj of risultato) {
-                        array.push(
-                            [
-                                new Date(obj["time"]),
-                                obj["aTemp"],
-                                obj["aHum"],
-                                obj["bTemp"],
-                                obj["bHum"],
-                                obj["extTemp"],
-                                obj["extHum"]
-                            ]
-                        )
-                    }
-
-                    this.setState(
-                        {
-                            isLoading: false,
-                            data: array
-                        }
-                    )
                 }
 
-                xml.ontimeout = event => {
-                    this.setState(
-                        {
-                            isLoading: false,
-                            serverDown: true
-                        }
-                    )
-                }
-
-                xml.open("GET", 'http://ee8ab2dfef19.ngrok.io/api/observation/', true)
-                xml.timeout = 16000
-                xml.setRequestHeader("X-AUTH-TOKEN", "BANANA-TOKEN-2021")
-                xml.send(null)
-            }
-        )
+                this.setState(
+                    {
+                        isLoading: false,
+                        data: array
+                    }
+                )
+            })
     }
 
     render() {
