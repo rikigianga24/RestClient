@@ -1,14 +1,17 @@
-import { Button, Nav } from "react-bootstrap"
+import { Button, Nav, Navbar } from "react-bootstrap"
 
 function Header (props)
 {
     return (
-        <div className="p-2" style={{backgroundColor: props.darkMode.navbarBg}}>
-            <Button onClick={props.activeDarkMode}>{props.darkMode.text}</Button>
+        <Navbar className="p-2" style={{backgroundColor: props.darkMode.navbarBg}}>
             <Nav className="ms-auto">
-
+                <Button variant="" onClick={props.activeDarkMode}>
+                    <svg width="32" height="32" viewBox="0 0 16 16" fill={props.darkMode.iconFill}>
+                        {props.darkMode.icon}
+                    </svg>
+                </Button>
             </Nav>
-        </div>
+        </Navbar>
     );
 }
 

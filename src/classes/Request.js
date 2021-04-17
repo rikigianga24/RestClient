@@ -1,4 +1,4 @@
-import { URL } from "../Config"
+import { URL, TIMEOUT_REQUEST, HEADERS } from "../Config"
 
 class Request
 {
@@ -11,12 +11,28 @@ class Request
      */
     async avgOnYear(year, field)
     {
-        return await this.__doRequest(`http://ee8ab2dfef19.ngrok.io/api/observation/get-year-avg/${year}/${field}`)
+        return await this.__doRequest(`${URL}/get-year-avg/${year}/${field}`)
     }
 
+    /**
+     * Ritorna la media dei valori nel giorno tot.
+     * Il formato della data deve essere "YYYY-mm-dd"
+     * @param {date} day 
+     * @param {string} field 
+     * @returns Promise
+     */
     async avgOnDay(day, field)
     {
+        return await this.__doRequest(`${URL}/get-avg-on/${day}/${field}`)
+    }
 
+    /**
+     * Restituisce tutti i dati da caricare nel Chart
+     * @returns Promise
+     */
+    async getAllData()
+    {
+        return await this.__doRequest(URL)
     }
 
     /**
@@ -40,9 +56,17 @@ class Request
 
                     resolve(JSON.parse(xml.responseText))
                 }
+
+                xml.ontimeout = () => {
+                    reject({error: "server timed out"})
+                }
                 
                 xml.open("GET", url, true)
-                xml.setRequestHeader("X-AUTH-TOKEN", "BANANA-TOKEN-2021")
+                xml.timeout = TIMEOUT_REQUEST
+                for (let header of HEADERS)
+                {
+                    xml.setRequestHeader(header[0], header[1])
+                }
                 xml.send()
             }
         )

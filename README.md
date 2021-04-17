@@ -18,3 +18,21 @@ npm install
 ```
 Questo comando scaricherà tutti i moduli, quindi mettetevi comodi,
 ci potrebbe voler un po'.
+
+## Configurazione
+Il file di configurazione si trova su:
+```bash
+src/Config.js
+```
+I parametri per ora configurabili sono:
+- **URL**: rappresenta l'url del Web Service
+- **TIMEOUT_REQUEST**: rappresenta il timeout entro il quale l'applicazione deve restituire errore se il server non ha ritornato una risposta
+- **HEADERS**: un array di headers da includere nella richiesta
+
+## Avvio applicazione
+Dopo aver installato le dipendenze ed aver configurato l'app è possibile vederla in azione digitando nel terminale:
+```bash
+npm start
+```
+Questo avvierà un Web Server che ti farà utilizzare l'app. Di default il server sta in ascolto su **localhost:3000**,
+però per essere sicuri guardate l'output del comando precedente per vedere dove esattamente sta in ascolto.

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
-import Chart from "react-google-charts";
 import ServerDownAlert from "./functional/ServerDownAlert"
+import TableValues from "./functional/TableValues"
 import Request from "../classes/Request"
+import ValueChart from "./functional/ValueChart"
 
 class Get extends React.Component {
     constructor(props) {
@@ -135,12 +136,8 @@ class Get extends React.Component {
     }
 
     render() {
-        if (this.state.isLoading) {
-            return (
-                <h4>Sto caricando i dati...</h4>
-            );
-        }
-        else if (this.state.serverDown) {
+        
+        if (this.state.serverDown) {
             return (
                 <ServerDownAlert />
             );
@@ -152,40 +149,20 @@ class Get extends React.Component {
             <div className="mt-3">
                 <Row>
                     <Col xs={12} md={3}>
-                        <Row className="h-100 flex-column align-items-center" style={{ color: this.props.darkMode.textColor }}>
-                            <Col className="shadow mb-2" style={{ backgroundColor: this.props.darkMode.paperBg }}>
-                                <p>Media aTemp</p>
-                                <h4>{parseFloat(this.state.aTemp).toPrecision(4)}</h4>
-                            </Col>
-                            <Col className="p-2 shadow mb-2" style={{ backgroundColor: this.props.darkMode.paperBg }}>
-                                <p>Media aHum</p>
-                                <h4>{parseFloat(this.state.aHum).toPrecision(4)}</h4>
-                            </Col>
-                            <Col className="p-2 shadow mb-2" style={{ backgroundColor: this.props.darkMode.paperBg }}>
-                                <p>Media bTemp</p>
-                                <h4>{parseFloat(this.state.bTemp).toPrecision(4)}</h4>
-                            </Col>
-                            <Col className="p-2 shadow mb-2" style={{ backgroundColor: this.props.darkMode.paperBg }}>
-                                <p>Media bHum</p>
-                                <h4>{parseFloat(this.state.bHum).toPrecision(4)}</h4>
-                            </Col>
-                            <Col className="p-2 shadow mb-2" style={{ backgroundColor: this.props.darkMode.paperBg }}>
-                                <p>Media extTemp</p>
-                                <h4>{parseFloat(this.state.extTemp).toPrecision(4)}</h4>
-                            </Col>
-                            <Col className="p-2 shadow mb-2" style={{ backgroundColor: this.props.darkMode.paperBg }}>
-                                <p>Media extHum</p>
-                                <h4>{parseFloat(this.state.extHum).toPrecision(4)}</h4>
-                            </Col>
-                        </Row>
+                        <TableValues
+                            darkMode={this.props.darkMode}
+                            aTemp={this.state.aTemp}
+                            aHum={this.state.aHum}
+                            bTemp={this.state.bTemp}
+                            bHum={this.state.bHum}
+                            extTemp={this.state.extTemp}
+                            extHum={this.state.extHum}
+                        />
                     </Col>
                     <Col xs={12} md={9}>
-                        <Chart
-                            height="450px"
-                            chartType="LineChart"
-                            loader="Loading chart..."
+                        <ValueChart
+                            isLoading={this.state.isLoading}
                             data={this.state.data}
-                            legendToggle
                         />
                     </Col>
                 </Row>
