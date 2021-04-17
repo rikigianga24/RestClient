@@ -1,9 +1,11 @@
 # Visualizzazione temperatura
 App per visualizzare la temperatura utilizzando un [Web Service](https://github.com/J-Dany/RestWB_Symfony).
 
+L'applicazione fa uso di una serie di [richieste asincrone](https://developer.mozilla.org/it/docs/Web/API/XMLHttpRequest) per mostrare i dati.
+
 ## Dipendenze
-- node
-- npm
+- [node](https://nodejs.org/it/download/)
+- [npm](https://nodejs.org/it/download/)
 
 ## Installazione
 Una volta clonato, spostatevi nella cartella del progetto:
@@ -24,6 +26,7 @@ Il file di configurazione si trova su:
 ```bash
 src/Config.js
 ```
+
 I parametri per ora configurabili sono:
 - **URL**: rappresenta l'url del Web Service
 - **TIMEOUT_REQUEST**: rappresenta il timeout entro il quale l'applicazione deve restituire errore se il server non ha ritornato una risposta
