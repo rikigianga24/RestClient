@@ -1,25 +1,51 @@
+import { URL } from "../Config"
+
 class Request
 {
-    avgOnYear(year, field)
+    /**
+     * Ritorna la promise con il risultato della richiesta asincrona
+     * che ritorna la media dei valori nell'anno richiesto
+     * @param {string} year 
+     * @param {string} field 
+     * @returns Promise
+     */
+    async avgOnYear(year, field)
     {
-        return this.__doRequest(`http://ee8ab2dfef19.ngrok.io/api/observation/get-year-avg/${year}/${field}`)
+        return await this.__doRequest(`http://ee8ab2dfef19.ngrok.io/api/observation/get-year-avg/${year}/${field}`)
     }
 
-    __doRequest (url)
+    async avgOnDay(day, field)
     {
-        let xml = new XMLHttpRequest()
 
-        let res = null
+    }
 
-        xml.onload = data => {
-            res = JSON.parse(xml.responseText)
-        }
-        
-        xml.open("GET", url, false)
-        xml.setRequestHeader("X-AUTH-TOKEN", "BANANA-TOKEN-2021")
-        xml.send()
+    /**
+     * Ritorna una promise con il risultato
+     * della richiesta asincrona
+     * 
+     * @param {string} url 
+     * @returns Promise
+     */
+    async __doRequest (url)
+    {
+        return new Promise(
+            (resolve, reject) => {
+                let xml = new XMLHttpRequest()
 
-        return res
+                xml.onload = data => {
+                    if (xml.status >= 400)
+                    {
+                        reject(xml.status)
+                    }
+
+                    resolve(JSON.parse(xml.responseText))
+                }
+                
+                xml.open("GET", url, true)
+                xml.setRequestHeader("X-AUTH-TOKEN", "BANANA-TOKEN-2021")
+                xml.send()
+            }
+        )
     }
 }
 
