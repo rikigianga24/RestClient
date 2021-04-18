@@ -24,6 +24,49 @@ class Request {
   }
 
   /**
+   * Ritorna la media di un campo
+   * nel mese selezionato
+   * @param {string} month
+   * @param {string} year
+   * @param {string} field
+   * @return Promise
+   */
+  async avgOnMonth(month, year, field){
+    return await this.__doRequest(`${URL}get-month-avg/${year}/${month}/${field}`)
+  }
+
+  /**
+   * Ritorna tutti i dati in uno specifico anno
+   * @param {string} year
+   * @returns Promise
+   */
+  async allDataInYear(year)
+  {
+    return await this.__doRequest(`${URL}get-by-year/${year}`)
+  }
+
+  /**
+   * Restituisce tutti i dati nel giorno selezionato
+   * @param {string} day
+   * @returns Promise
+   */
+  async allDataInDay(day)
+  {
+    return await this.__doRequest(`${URL}get-by-day/${day}`)
+  }
+
+  /**
+   * Restituisce tutti i dati nel mese selezionato
+   * @param {string} year
+   * @param {string} month
+   * @returns Promise
+   */
+  async allDataInMonth(year, month)
+  {
+    return await this.__doRequest(`${URL}get-by-month/${year}/${month}`)
+  }
+
+  /**
    * Restituisce tutti i dati da caricare nel Chart
    * @returns Promise
    */
