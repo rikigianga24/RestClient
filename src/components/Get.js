@@ -10,11 +10,7 @@ class Get extends React.Component {
     constructor(props) {
         super(props)
 
-        this.arrayAhum = []
-        this.arrayBtemp = []
-        this.arrayBhum = []
-        this.arrayExtTemp = []
-        this.arrayExtHum = []
+        this.req = new Request()
 
         this.state =
         {
@@ -25,38 +21,32 @@ class Get extends React.Component {
     }
 
     averageAtemp() {
-        let req = new Request()
-        req.avgOnYear("2019", "aTemp")
+        this.req.avgOnYear("2019", "aTemp")
             .then(value => this.setState({ aTemp: value[0].avg_aTemp }))
     }
 
     averageAhum() {
-        let req = new Request()
-        req.avgOnYear("2019", "aHum")
+        this.req.avgOnYear("2019", "aHum")
             .then(value => this.setState({ aHum: value[0].avg_aHum }))
     }
 
     averageBtemp() {
-        let req = new Request()
-        req.avgOnYear("2019", "bTemp")
+        this.req.avgOnYear("2019", "bTemp")
             .then(value => this.setState({ bTemp: value[0].avg_bTemp }))
     }
 
     averageBhum() {
-        let req = new Request()
-        req.avgOnYear("2019", "bHum")
+        this.req.avgOnYear("2019", "bHum")
             .then(value => this.setState({ bHum: value[0].avg_bHum }))
     }
 
     averageExtTemp() {
-        let req = new Request()
-        req.avgOnYear("2019", "extTemp")
+        this.req.avgOnYear("2019", "extTemp")
             .then(value => this.setState({ extTemp: value[0].avg_extTemp }))
     }
 
     averageExtHum() {
-        let req = new Request()
-        req.avgOnYear("2019", "extHum")
+        this.req.avgOnYear("2019", "extHum")
             .then(value => this.setState({ extHum: value[0].avg_extHum }))
     }
 
@@ -69,13 +59,32 @@ class Get extends React.Component {
         this.averageExtHum()
     }
 
+    loadAvailableYear ()
+    {
+        this.req.getAllAvailableYear()
+            .then(value => {
+                let y = []
+
+                for (let v of value)
+                {
+                    y.push(<option>{v.year}</option>)
+                }
+
+                this.setState(
+                    {
+                        years: y
+                    }
+                )
+            })
+    }
+
     getRequest() {
 
         this.loadAvgs()
 
-        let req = new Request()
+        this.loadAvailableYear()
 
-        req.getAllData()
+        this.req.getAllData()
             .then(value => {
                 let risultato = value
                 let array = []
@@ -129,7 +138,7 @@ class Get extends React.Component {
 
         return (
             <div className="mt-3 h-100">
-                <HeaderSelect />
+                <HeaderSelect years={this.state.years} />
                 <Row>
                     <Col xs={12} md={3}>
                         <TableValues

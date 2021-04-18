@@ -1,15 +1,9 @@
 import React from "react"
 import { Row, Col, InputGroup, Button } from "react-bootstrap"
 
-function HeaderSelect() {
+function HeaderSelect(props) {
     let m = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]
     let months = []
-
-    for (let month of m) {
-        months.push(
-            <option>{month}</option>
-        )
-    }
 
     for (let i = 0; i < m.length; ++i)
     {
@@ -17,9 +11,6 @@ function HeaderSelect() {
             <option value={i}>{m[i]}</option>
         )
     }
-
-
-    
 
     return (
         <Row className="mb-3">
@@ -47,7 +38,7 @@ function HeaderSelect() {
                         <InputGroup.Text>Anno:</InputGroup.Text>
                     </InputGroup.Prepend>
                     <select className="form-control" id="year">
-                        <option>Nothing</option>
+                        {props.years}
                     </select>
                 </InputGroup>
             </Col>

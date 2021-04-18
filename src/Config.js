@@ -1,7 +1,7 @@
 /**
  * L'url per collegarsi al Web Service
  */
-export const URL = "http://ee8ab2dfef19.ngrok.io/api/observation"
+export const URL = "http://ee8ab2dfef19.ngrok.io/api/observation/"
 
 /**
  * Rappresenta il timeout per le richieste asincrone che
