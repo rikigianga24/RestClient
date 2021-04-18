@@ -18,6 +18,9 @@ function HeaderSelect() {
         )
     }
 
+
+    
+
     return (
         <Row className="mb-3">
             <Col xs={3}>
@@ -25,7 +28,7 @@ function HeaderSelect() {
                     <InputGroup.Prepend>
                         <InputGroup.Text>Giorno</InputGroup.Text>
                     </InputGroup.Prepend>
-                    <input type="date" id="day" className="form-control" />
+                    <input type="text" id="day" className="form-control" />
                 </InputGroup>
             </Col>
             <Col xs={3}>

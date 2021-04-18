@@ -68,6 +68,12 @@ class App extends React.Component {
                             <Route exact path="/">
                                 <Get darkMode={this.state.darkMode} />
                             </Route>
+                            <Route exact path="/add">
+                                <Post darkMode={this.state.darkMode} />
+                            </Route>
+                            <Route exact path="/update">
+                                <Put darkMode={this.state.darkMode} />
+                            </Route>
                         </Switch>
                     </Router>
                 </div>
