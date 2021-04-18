@@ -7,10 +7,7 @@ function Header (props)
             <Nav className="ms-auto">
                   <Nav.Item>
                   <Nav.Link href="/add">Inserisci nuove temperature</Nav.Link>
-                  </Nav.Item> 
-                  <Nav.Item>
-                  <Nav.Link href="/update">Aggiorna le temperature</Nav.Link>
-                  </Nav.Item> 
+                  </Nav.Item>
           
                 <Button variant="" onClick={props.activeDarkMode}>
                     <svg width="32" height="32" viewBox="0 0 16 16" fill={props.darkMode.iconFill}>
