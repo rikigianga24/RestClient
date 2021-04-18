@@ -1,5 +1,6 @@
 import React from "react";
 import Get from "./components/Get.js";
+import Post from "./components/Post.js"
 import {
     BrowserRouter as Router,
     Switch,
@@ -72,7 +73,7 @@ class App extends React.Component {
                                 <Post darkMode={this.state.darkMode} />
                             </Route>
                             <Route exact path="/update">
-                                <Put darkMode={this.state.darkMode} />
+                                
                             </Route>
                         </Switch>
                     </Router>
