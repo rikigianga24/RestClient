@@ -6,7 +6,7 @@ function Header (props)
         <Navbar className="p-2" style={{backgroundColor: props.darkMode.navbarBg}}>
             <Nav className="ms-auto">
                   <Nav.Item>
-                  <Nav.Link href="/add">Inserisci nuove temperature</Nav.Link>
+                  <Nav.Link style={{color:props.darkMode.textColor}} href="/add">Inserisci nuove temperature</Nav.Link>
                   </Nav.Item>
           
                 <Button variant="" onClick={props.activeDarkMode}>

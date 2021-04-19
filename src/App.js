@@ -14,6 +14,7 @@ class App extends React.Component {
         this.state = {
             darkMode: {
                 containerBg: '#eeeeee',
+                textColor: 'black',
                 navbarBg: '#fafafa',
                 paperBg: '#fafafa',
                 text: "Dark Mode",
