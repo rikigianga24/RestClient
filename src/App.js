@@ -8,7 +8,6 @@ import {
 import Header from "./components/functional/Header"
 import Settings from "./components/functional/Settings"
 import History from "./components/History"
-import { Container } from "react-bootstrap"
 import { Container as MaterialContainer, Fab } from "@material-ui/core"
 import FormLog from "./components/FormLog.js"
 import DarkModeIcon from "@material-ui/icons/Brightness4"
@@ -69,7 +68,7 @@ class App extends React.Component
     render() 
     {
         return (
-            <Container fluid style={{ backgroundColor: this.state.darkMode.containerBg, height: '100%' }}>
+            <div style={{ backgroundColor: this.state.darkMode.containerBg, height: '100%' }}>
                 <MaterialContainer maxWidth="lg" style={{backgroundColor: this.state.darkMode.containerBg}}>
                     <Router>
                         <Header bg={this.state.darkMode.appBg} textColor={this.state.darkMode.textColor} />
@@ -93,7 +92,7 @@ class App extends React.Component
                         {this.state.darkMode.icon}
                     </Fab>
                 </MaterialContainer>
-            </Container>
+            </div>
         )
     }
 }

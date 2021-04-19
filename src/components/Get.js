@@ -4,10 +4,8 @@ import ServerDownAlert from "./functional/ServerDownAlert";
 import { Grid } from "@material-ui/core"
 import ValuesTable from "./functional/ValuesTable"
 
-class Get extends React.Component 
-{
-  constructor(props) 
-  {
+class Get extends React.Component {
+  constructor(props) {
     super(props)
 
     this.arrayDati = []
@@ -19,75 +17,57 @@ class Get extends React.Component
     this.min = 0
   }
 
-  getMax() 
-  {
+  getMax() {
     return this.max
   }
 
-  getMin() 
-  {
+  getMin() {
     return this.min
   }
 
-  getAverage() 
-  {
+  getAverage() {
     return this.arrayDati.reduce((a, b) => a + b, 0) / this.arrayDati.length
   }
 
-  loadData ()
-  {
+  loadData() {
     let dato = 10 + Math.random() * 90
-      this.arrayDati.push(dato);
+    this.arrayDati.push(dato);
 
-      if (dato > this.max)
-      {
-        this.max = dato
-      }
-      
-      if (this.min === 0)
-      {
-        this.min = dato
-      }
-      else if(dato < this.min)
-      {
-        this.min = dato
-      }
+    if (dato > this.max) {
+      this.max = dato
+    }
 
-      this.setState({
-        isLoading: false,
-        data: [
-          ["Label", "Value"],
-          ["°C", dato],
-        ]
-      })
+    if (this.min === 0) {
+      this.min = dato
+    }
+    else if (dato < this.min) {
+      this.min = dato
+    }
+
+    this.setState({
+      isLoading: false,
+      data: [
+        ["Label", "Value"],
+        ["°C", dato],
+      ]
+    })
   }
 
-  shouldComponentUpdate ()
-  {
-    return true
-  }
-
-  componentDidMount ()
-  {
-    this.interval = setInterval(() => 
-    {
+  componentDidMount() {
+    this.interval = setInterval(() => {
       this.loadData()
     }, 1000)
   }
 
-  componentWillUnmount ()
-  {
+  componentWillUnmount() {
     clearInterval(this.interval)
   }
 
-  render() 
-  {
-    if (this.state.isLoading) 
-    {
+  render() {
+    if (this.state.isLoading) {
       return <h4>Sto caricando i dati...</h4>;
-    } 
-    else if (this.state.serverDown) 
-    {
+    }
+    else if (this.state.serverDown) {
       return <ServerDownAlert />;
     }
 
@@ -110,7 +90,6 @@ class Get extends React.Component
                 yellowTo: 90,
                 minorTicks: 5,
               }}
-              legendToggle
             />
           </div>
         </Grid>
