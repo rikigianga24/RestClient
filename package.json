@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
+    "aedes": "^0.45.2",
     "body-parser": "^1.19.0",
     "express-myconnection": "^1.0.4",
     "google-charts": "^2.0.0",

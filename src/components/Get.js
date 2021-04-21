@@ -1,8 +1,8 @@
 import React from "react";
-import Chart from "react-google-charts";
 import ServerDownAlert from "./functional/ServerDownAlert";
 import { Grid } from "@material-ui/core"
 import ValuesTable from "./functional/ValuesTable"
+import ValueChart from "./functional/ValueChart"
 
 class Get extends React.Component {
   constructor(props) {
@@ -78,19 +78,7 @@ class Get extends React.Component {
         </Grid>
         <Grid item xs={8} lg={9}>
           <div className="d-flex justify-content-center">
-            <Chart
-              height="450px"
-              chartType="Gauge"
-              loader="Loading chart..."
-              data={this.state.data}
-              options={{
-                redFrom: 90,
-                redTo: 100,
-                yellowFrom: 75,
-                yellowTo: 90,
-                minorTicks: 5,
-              }}
-            />
+            <ValueChart />
           </div>
         </Grid>
       </Grid>

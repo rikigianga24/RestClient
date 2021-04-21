@@ -34,7 +34,6 @@ class App extends React.Component
     {
         if (this.state.darkMode.isDarkMode)
         {
-            console.log("if")
             this.setState(
                 (state, props) => {
                     return {
@@ -51,7 +50,6 @@ class App extends React.Component
         }
         else
         {
-            console.log("else")
             this.setState( (state, props) => {
                 return {
                     darkMode: {
@@ -98,4 +96,4 @@ class App extends React.Component
     }
 }
 
-export default App;
+export default App
