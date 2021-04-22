@@ -9,10 +9,8 @@ import Header from "./components/functional/Header"
 import Settings from "./components/functional/Settings"
 import History from "./components/History"
 import { Container as MaterialContainer, Fab } from "@material-ui/core"
-import FormLog from "./components/FormLog.js"
 import DarkModeIcon from "@material-ui/icons/Brightness4"
 import LightModeIcon from "@material-ui/icons/Brightness7"
-import mqtt from "mqtt"
 
 class App extends React.Component 
 {
@@ -71,7 +69,7 @@ class App extends React.Component
                 <MaterialContainer maxWidth="lg" style={{backgroundColor: this.state.darkMode.containerBg}}>
                     <Router>
                         <Header bg={this.state.darkMode.appBg} textColor={this.state.darkMode.textColor} />
-                        <div className="mt-5"></div>
+                        <div className="mt-4"></div>
                         <Switch>
                             <Route exact path="/">
                                 <Get darkMode={this.state.darkMode} />
@@ -81,9 +79,6 @@ class App extends React.Component
                             </Route>
                             <Route exact path="/storage">
                                 <History />
-                            </Route>
-                            <Route exact path="/login">
-                                <FormLog />
                             </Route>
                         </Switch>
                     </Router>

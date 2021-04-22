@@ -73,12 +73,12 @@ class Get extends React.Component {
 
     return (
       <Grid container className="h-100">
-        <Grid item xs={4} lg={3}>
+        <Grid item xs={12} sm={2} md={3}>
           <ValuesTable bg={this.props.darkMode.appBg} textColor={this.props.darkMode.textColor} average={this.getAverage()} min={this.getMin()} max={this.getMax()} />
         </Grid>
-        <Grid item xs={8} lg={9}>
+        <Grid item xs={12} sm={10} md={9}>
           <div className="d-flex justify-content-center">
-            <ValueChart />
+            <ValueChart data={this.state.data} />
           </div>
         </Grid>
       </Grid>
