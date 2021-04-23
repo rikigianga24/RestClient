@@ -72,6 +72,7 @@ class App extends React.Component
                         <div className="mt-4"></div>
                         <Switch>
                             <Route exact path="/">
+                                <p style={{color: this.state.darkMode.textColor}}>I dati si aggiornano dopo <strong>1 minuto</strong>.</p>
                                 <Get darkMode={this.state.darkMode} />
                             </Route>
                             <Route exact path="/settings">
